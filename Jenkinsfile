@@ -7,23 +7,23 @@ pipeline{
                  echo 'github url checkout'
             }
         }
-        stage('codecompile with darshan'){
+        stage('codecompile with arun'){
             steps{
                 echo 'starting compiling'
                 sh 'mvn compile'
             }
         }
-        stage('codetesting with darshan'){
+        stage('codetesting with arun'){
             steps{
                 sh 'mvn test'
             }
         }
-        stage('qa with darshan'){
+        stage('qa with arun'){
             steps{
                 sh 'mvn checkstyle:checkstyle'
             }
         }
-        stage('package with darshan'){
+        stage('package with arun'){
             steps{
                 sh 'mvn package'
             }
