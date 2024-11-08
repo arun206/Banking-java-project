@@ -3,27 +3,27 @@ pipeline{
     stages{
         stage('checkout the code from github'){
             steps{
-                 git url: 'https://github.com/arun206/Banking-java-project/'
+                 git url: 'https://github.com/letscrackthis/Banking-java-project/'
                  echo 'github url checkout'
             }
         }
-        stage('codecompile with arun'){
+        stage('codecompile with darshan'){
             steps{
                 echo 'starting compiling'
                 sh 'mvn compile'
             }
         }
-        stage('codetesting with arun'){
+        stage('codetesting with darshan'){
             steps{
                 sh 'mvn test'
             }
         }
-        stage('qa with arun'){
+        stage('qa with darshan'){
             steps{
                 sh 'mvn checkstyle:checkstyle'
             }
         }
-        stage('package with arun'){
+        stage('package with darshan'){
             steps{
                 sh 'mvn package'
             }
@@ -33,9 +33,10 @@ pipeline{
                sh 'docker build -t myimg .'
            }
          }
-        stage('port expose'){
+        stage('Login to docker hub and push the file'){
             steps{
-                sh 'docker run -dt -p 8091:8091 --name c000 myimg'
+                withCredentials([string(credentialsId: 'dockerhubpass', variable: 'dockerhubpass')]) {
+                sh 'docker login -u darshan200122 -p $(dockerhubpass}'
             }
         }   
     }
