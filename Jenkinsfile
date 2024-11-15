@@ -10,7 +10,7 @@ pipeline{
         stage('codecompile with arun'){
             steps{
                 echo 'starting compiling'
-                sh 'mvn compile'
+                sh 'mvn compile with arun'
             }
         }
         stage('codetesting with arun'){
@@ -25,10 +25,10 @@ pipeline{
         }
         stage('package with arun'){
             steps{
-                sh 'mvn package'
+                sh 'mvn package with arun'
             }
         }
-        stage('run dockerfile'){
+        stage('run dockerfile with arun'){
           steps{
                sh 'docker build -t myimg .'
            }
